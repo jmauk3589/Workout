@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="FitnessDB@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="fitness">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="accounts"/>
+    <schema id="4" parent="1" name="information_schema"/>
+    <schema id="5" parent="1" name="mysql"/>
+    <schema id="6" parent="1" name="performance_schema"/>
+    <schema id="7" parent="1" name="sakila"/>
+    <schema id="8" parent="1" name="sys"/>
+    <schema id="9" parent="1" name="world"/>
+    <table id="10" parent="2" name="descriptions">
+      <Comment>Descriptions for the exercises. Decoupled because the descriptions can cause slow down of retrieval of info.</Comment>
+    </table>
+    <table id="11" parent="2" name="exercises"/>
+    <table id="12" parent="2" name="muscle_groups"/>
+    <table id="13" parent="2" name="muscles"/>
+    <column id="14" parent="10" name="dID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="15" parent="10" name="Description">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="16" parent="10" name="Description_UNIQUE">
+      <ColNames>Description</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="17" parent="10" name="dID_UNIQUE">
+      <ColNames>dID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="18" parent="10" name="PRIMARY">
+      <ColNames>dID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="19" parent="10" name="dID_UNIQUE">
+      <ColNames>dID</ColNames>
+      <UnderlyingIndexName>dID_UNIQUE</UnderlyingIndexName>
+    </key>
+    <key id="20" parent="10" name="Description_UNIQUE">
+      <ColNames>Description</ColNames>
+      <UnderlyingIndexName>Description_UNIQUE</UnderlyingIndexName>
+    </key>
+    <column id="21" parent="11" name="ExID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="22" parent="11" name="Ex_Name">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="11" name="Ex_Muscle_Group">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="11" name="Ex_Muscle">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="11" name="Ex_Description">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="11" name="Ex_Primary_Focus">
+      <Position>6</Position>
+      <DataType>tinyint(1)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="27" parent="11" name="ExID_UNIQUE">
+      <ColNames>ExID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="28" parent="11" name="Ex_Name_UNIQUE">
+      <ColNames>Ex_Name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="29" parent="11" name="FK_description_idx">
+      <ColNames>Ex_Description</ColNames>
+    </index>
+    <index id="30" parent="11" name="FK_group_idx">
+      <ColNames>Ex_Muscle_Group</ColNames>
+    </index>
+    <index id="31" parent="11" name="FK_muscle_idx">
+      <ColNames>Ex_Muscle</ColNames>
+    </index>
+    <key id="32" parent="11" name="PRIMARY">
+      <ColNames>ExID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="33" parent="11" name="ExID_UNIQUE">
+      <ColNames>ExID</ColNames>
+      <UnderlyingIndexName>ExID_UNIQUE</UnderlyingIndexName>
+    </key>
+    <key id="34" parent="11" name="Ex_Name_UNIQUE">
+      <ColNames>Ex_Name</ColNames>
+      <UnderlyingIndexName>Ex_Name_UNIQUE</UnderlyingIndexName>
+    </key>
+    <foreign-key id="35" parent="11" name="FK_group">
+      <ColNames>Ex_Muscle_Group</ColNames>
+      <RefSchemaName>fitness</RefSchemaName>
+      <RefTableName>muscle_groups</RefTableName>
+      <RefColNames>mgID</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <foreign-key id="36" parent="11" name="FK_muscle">
+      <ColNames>Ex_Muscle</ColNames>
+      <RefSchemaName>fitness</RefSchemaName>
+      <RefTableName>muscles</RefTableName>
+      <RefColNames>mID</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <foreign-key id="37" parent="11" name="FK_description">
+      <ColNames>Ex_Description</ColNames>
+      <RefSchemaName>fitness</RefSchemaName>
+      <RefTableName>descriptions</RefTableName>
+      <RefColNames>dID</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <column id="38" parent="12" name="mgID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="39" parent="12" name="mg_Group">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="40" parent="12" name="Muscle_Group_UNIQUE">
+      <ColNames>mg_Group</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="41" parent="12" name="mgID_UNIQUE">
+      <ColNames>mgID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="42" parent="12" name="PRIMARY">
+      <ColNames>mgID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="43" parent="12" name="mgID_UNIQUE">
+      <ColNames>mgID</ColNames>
+      <UnderlyingIndexName>mgID_UNIQUE</UnderlyingIndexName>
+    </key>
+    <key id="44" parent="12" name="Muscle_Group_UNIQUE">
+      <ColNames>mg_Group</ColNames>
+      <UnderlyingIndexName>Muscle_Group_UNIQUE</UnderlyingIndexName>
+    </key>
+    <column id="45" parent="13" name="mID">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="46" parent="13" name="m_Name">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="13" name="m_Group">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="48" parent="13" name="Group_idx">
+      <ColNames>m_Group</ColNames>
+    </index>
+    <index id="49" parent="13" name="Muscle Name_UNIQUE">
+      <ColNames>m_Name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="50" parent="13" name="mID_UNIQUE">
+      <ColNames>mID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="51" parent="13" name="PRIMARY">
+      <ColNames>mID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="52" parent="13" name="mID_UNIQUE">
+      <ColNames>mID</ColNames>
+      <UnderlyingIndexName>mID_UNIQUE</UnderlyingIndexName>
+    </key>
+    <key id="53" parent="13" name="Muscle Name_UNIQUE">
+      <ColNames>m_Name</ColNames>
+      <UnderlyingIndexName>Muscle Name_UNIQUE</UnderlyingIndexName>
+    </key>
+    <foreign-key id="54" parent="13" name="FK_muscle_group">
+      <ColNames>m_Group</ColNames>
+      <RefSchemaName>fitness</RefSchemaName>
+      <RefTableName>muscle_groups</RefTableName>
+      <RefColNames>mgID</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+  </database-model>
+</dataSource>
