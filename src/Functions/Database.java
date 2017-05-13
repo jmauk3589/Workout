@@ -15,7 +15,7 @@ public class Database {
         Connection con = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/fitness?autoReconnect=true&useSSL=false","root","charlie1");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/fitness?autoReconnect=true&useSSL=false","Johnny","Chemeng13");
         }catch(Exception e){
             System.err.println(e.getClass().getName() + ": " +e.getMessage());
             System.exit(0);
